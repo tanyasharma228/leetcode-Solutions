@@ -1,13 +1,25 @@
 class Solution {
+    boolean isVowel(char ch){
+        return "aeiou".indexOf(ch) != -1;
+    }
     public int maxVowels(String s, int k) {
-        int count =0, max=0 ;
-        for(int i=0; i<s.length(); i++){
-           if("aeiou".indexOf(s.charAt(i)) >= 0)
+        int count =0, max=0, left=0 ;
+        for(int i=0; i<k; i++){
+           char ch = s.charAt(i);
+           if(isVowel(ch))
            count++;
-           if(i >= k && "aeiou" .indexOf(s.charAt(i-k)) >= 0)
-           count--;
-            max = Math.max(max, count);
         }
-        return max;
+        max= count;
+        for(int i=k; i<s.length(); i++){
+            if(isVowel(s.charAt(i))){
+             
+              count++;
+        }
+        if(isVowel(s.charAt(i-k))){
+            count--;
+        }
+        max=Math.max(max,count);
+        }
+            return max;
     }
 }
